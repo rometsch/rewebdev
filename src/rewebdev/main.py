@@ -3,7 +3,7 @@
 Inspired by
 https://sakthipriyan.com/2016/02/15/auto-refresh-chrome-when-files-modified.html
 
-Licence: APACHE LICENSE, VERSION 2.0
+Licence: AGPL-3.0
 """
 
 import os
