@@ -4,7 +4,7 @@ A simple python webdev server which also starts chromium and reloads the page on
 
 ## Rational
 
-[https://github.com/hakimel/reveal.js/](reveal.js) is awesome! While using it, I really like to see changes as I go.
+[reveal.js](https://github.com/hakimel/reveal.js/) is awesome! While using it, I really like to see changes as I go.
 So I need the webpage to automatically reload when I hit ctrl + s.
 This package solves exactly this problem.
 
