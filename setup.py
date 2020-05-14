@@ -2,12 +2,12 @@
 from setuptools import setup, find_namespace_packages
 
 setup(
-    name="rewebdev",
+    name="rewebs",
     version="1.0",
     description="A simple python webdev server which also starts chromium and reloads the page on file change.",
     author="Thomas Rometsch",
     author_email="thomas.rometsch@uni-tuebingen.de",
-    url="https://github.com/rometsch/rewebdev",
+    url="https://github.com/rometsch/rewebs",
     package_dir={'': 'src'},
     packages=find_namespace_packages(where="src"),
     install_requires=[
@@ -17,7 +17,7 @@ setup(
     ],
     zip_safe=False,
     entry_points = {
-        'console_scripts': ['rewebdev=rewebdev.main:main'],
+        'console_scripts': ['rewebs=rewebs.main:main'],
     },
     classifiers=[
         "Programming Language :: Python :: 3",

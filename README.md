@@ -1,4 +1,4 @@
-# rewebdev
+# rewebs
 
 A simple python webdev server which also starts chromium and reloads the page on file change.
 
@@ -10,14 +10,14 @@ This package solves exactly this problem.
 
 ## How to run
 
-Run `rewebdev` inside a directory containing an `index.html`.
+Run `rewebs` inside a directory containing an `index.html`.
 Chromium should launch in debug mode and your index page should be served.
 
 ## How to install
 
 Run `python3 setup.py install --user` to install the package and all its dependencies on your system.
 
-You'll then have access to the python library (check out the 3 files for browser, webserver and file monitor support) and, most importantly, the `rewebdev` command.
+You'll then have access to the python library (check out the 3 files for browser, webserver and file monitor support) and, most importantly, the `rewebs` command.
 
 ## Limitations
 

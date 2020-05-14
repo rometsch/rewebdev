@@ -7,9 +7,9 @@ Licence: AGPL-3.0
 """
 
 import os
-from rewebdev.webserver import start_server
-from rewebdev.browser import refresh_browser, start_browser
-from rewebdev.monitor import monitor
+from rewebs.webserver import start_server
+from rewebs.browser import refresh_browser, start_browser
+from rewebs.monitor import monitor
 
 
 def cb():
