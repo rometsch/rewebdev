@@ -11,6 +11,7 @@ import json
 import os
 import subprocess
 import threading
+import tempfile
 
 import requests
 from websocket import create_connection
@@ -26,8 +27,9 @@ refresh_json = json.dumps({
 
 def open_browser(url):
     # directory is used by chromium browser to store profile for this remote user.
-    directory = os.path.expanduser('~/.chrome-remote-profile')
-    command = 'chromium-browser --remote-debugging-port=%d --user-data-dir=%s %s' % \
+    tempdir = tempfile.TemporaryDirectory()
+    directory = os.path.join(tempdir.name,'chrome-remote-debuggin-profile')
+    command = 'chromium-browser --new-window --remote-debugging-port=%d --user-data-dir=%s %s' % \
         (chrome_port, directory, url)
     subprocess.call(command, shell=True)
 
