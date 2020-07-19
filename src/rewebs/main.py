@@ -7,6 +7,7 @@ Licence: AGPL-3.0
 """
 
 import os
+import time
 from rewebs.webserver import start_server
 from rewebs.browser import refresh_browser, start_browser
 from rewebs.monitor import monitor
@@ -16,11 +17,13 @@ def cb():
     """ Callback function. """
     refresh_browser()
 
+
 def main():
     my_directory = os.getcwd()
 
     start_server(my_directory)
     start_browser()
+    time.sleep(2)
     monitor(my_directory, cb)
 
 
