@@ -4,57 +4,11 @@ import http.server
 import os
 import threading
 import socket
-import errno
+import multiprocessing
+from .ports import get_next_free_port
 
-def is_port_free(port):
-    """ Check whether the port is free to use on localhost.
+browser_port = get_next_free_port(8000)
 
-    Parameters
-    ----------
-    port: int
-        Port number to check.
-
-    Returns
-    -------
-    bool:
-        True if free, false if already in use.
-    """
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-    try:
-        s.bind(("127.0.0.1", port))
-        rv = True
-    except socket.error as e:
-        if e.errno == errno.EADDRINUSE:
-            rv = False
-        else:
-            # something else raised the socket.error exception
-            raise
-
-    s.close()
-
-    return rv
-
-def get_next_free_port(port):
-    """ Find the next free port on localhost.
-    
-    Recursively test all port numbers with increments of 1 
-    starting from number 'port'.
-    
-    Parameters
-    ----------
-    port: int
-        Start looking from this port number upwards.
-        
-    Returns
-    -------
-    int
-        Next free port number.
-    """
-    if is_port_free(port):
-        return port
-    else:
-        return get_next_free_port(port + 1)
 
 def start_server_foreground(path, port, handler_class=http.server.SimpleHTTPRequestHandler):
     """ Start a simple http server restricted to local host.
@@ -72,7 +26,7 @@ def start_server_foreground(path, port, handler_class=http.server.SimpleHTTPRequ
     http.server.test(HandlerClass=handler_class, port=port, bind=bind)
 
 
-def start_server(path):
+def start_server(path, port):
     """ Start the simple http server in the background. 
 
     Parameter
@@ -80,12 +34,10 @@ def start_server(path):
     path: str
         Path to the directory to be served.
     """
-    port = get_next_free_port(8000)
-    server_thread = threading.Thread(
+    p = multiprocessing.Process(
         target=start_server_foreground, args=[path, port])
-    server_thread.start()
-    return port
-
+    p.start()
+    return p
 
 if __name__ == "__main__":
-    start_server(os.getcwd())
+    start_server(os.getcwd(), browser_port)
