@@ -13,18 +13,18 @@ from rewebs.browser import refresh_browser, start_browser
 from rewebs.monitor import monitor
 
 
-def cb():
+def cb(port=8000):
     """ Callback function. """
-    refresh_browser()
+    refresh_browser(port)
 
 
 def main():
     my_directory = os.getcwd()
 
-    start_server(my_directory)
-    start_browser()
+    port = start_server(my_directory)
+    start_browser(port)
     time.sleep(2)
-    monitor(my_directory, cb)
+    monitor(my_directory, lambda : cb(port=port))
 
 
 if __name__ == "__main__":
