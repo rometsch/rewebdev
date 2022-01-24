@@ -34,8 +34,7 @@ def open_browser(url):
     # directory is used by chromium browser to store profile for this remote user.
     tempdir = tempfile.TemporaryDirectory()
     directory = os.path.join(tempdir.name, 'chrome-remote-debuggin-profile')
-    command = 'chromium-browser --new-window --remote-debugging-port=%d --user-data-dir=%s %s' % \
-        (chrome_port, directory, url)
+    command = 'chromium --new-window --remote-debugging-port={} --user-data-dir={} {}'.format(chrome_port, directory, url)
     subprocess.call(command, shell=True)
 
 
